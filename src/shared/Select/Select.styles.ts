@@ -1,24 +1,6 @@
 import { Select } from "antd";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-export const BackToMain = styled(Link)`
-    color: #ACACAC;
-    font-size: 12px;
-`;
-
-export const Title = styled.p`
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    color: #3A3C40;
-    margin: 15px 0;
-`;
-
-export const WrapperFilters = styled.div`
-    display: flex;
-    gap: 10px;
-`;
+import { StyledSelectProps } from "./Select.interfaces";
 
 export const WrapperSelect = styled.div`
     position: relative;
@@ -35,12 +17,7 @@ export const Label = styled.label`
     top: 10px;
     color: #828282;
     font-size: 12px;
-
 `;
-
-interface StyledSelectProps {
-    width?: number | undefined;
-}
 
 export const StyledSelect = styled(Select)<StyledSelectProps>`
 

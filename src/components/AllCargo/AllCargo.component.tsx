@@ -1,61 +1,9 @@
-import { Button, DatePicker, Select, Table } from "antd";
-import type { ColumnsType } from "antd/es/table";
-import { Link } from "react-router-dom";
+import { DatePicker, Select } from "antd";
+import { Button } from "../../shared/Button/Button.component";
+import { CargosTable } from "../../views/CargosTable/CargosTable.components";
+import arrowBackIcon from "../../images/svg/arrow-back.svg";
 import * as S from './AllCargo.styles';
-
-interface DataType {
-  key: React.Key;
-  name: string;
-  age: number;
-  address: string;
-  description: string;
-}
-
-const columns: ColumnsType<DataType> = [
-  { title: "Name", dataIndex: "name", key: "name" },
-  { title: "Age", dataIndex: "age", key: "age" },
-  { title: "Address", dataIndex: "address", key: "address" },
-  {
-    title: "Action",
-    dataIndex: "",
-    key: "x",
-    render: () => <a>Delete</a>,
-  },
-];
-
-const data: DataType[] = [
-  {
-    key: 1,
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    description:
-      "My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.",
-  },
-  {
-    key: 2,
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    description:
-      "My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.",
-  },
-  {
-    key: 3,
-    name: "Not Expandable",
-    age: 29,
-    address: "Jiangsu No. 1 Lake Park",
-    description: "This not expandable",
-  },
-  {
-    key: 4,
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    description:
-      "My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.",
-  },
-];
+import { CustomSelect } from "../../shared/Select/Select.component";
 
 const { Option } = Select;
 
@@ -66,10 +14,19 @@ export const AllCargo = () => {
 
   return (
     <>
-      <S.BackToMain to="/">Вернуться на главную</S.BackToMain>
+      <S.BackToMain to="/">
+        <img src={arrowBackIcon} style={{marginRight: "10px"}} alt="Arrow back icon" />
+        Вернуться на главную
+      </S.BackToMain>
       <S.Title>Все грузы</S.Title>
       <S.WrapperFilters>
-      <S.WrapperSelect>
+        <CustomSelect width={263}>
+        <Option value="любой">Любой</Option>
+          <Option value="jack">Jack</Option>
+          <Option value="lucy">Lucy</Option>
+          <Option value="Yiminghe">yiminghe</Option>
+        </CustomSelect>
+      {/* <S.WrapperSelect>
         <S.StyledSelect
           width={363}
           defaultValue={"Любой"}
@@ -80,7 +37,7 @@ export const AllCargo = () => {
           <Option value="lucy">Lucy</Option>
           <Option value="Yiminghe">yiminghe</Option>
         </S.StyledSelect>
-        <S.Label>Порт назначения</S.Label>
+        <S.Label>Порт назначения<img src={infoIcon} style={{marginLeft: "10px"}} alt="Info icon" /></S.Label>
       </S.WrapperSelect>
       <S.WrapperSelect>
         <S.StyledSelect
@@ -95,21 +52,13 @@ export const AllCargo = () => {
           </Option>
           <Option value="Yiminghe">yiminghe</Option>
         </S.StyledSelect>
-        <S.Label>Статус</S.Label>
-      </S.WrapperSelect>
+        <S.Label>Статус<img src={infoIcon} style={{marginLeft: "10px"}} alt="Info icon" /></S.Label>
+      </S.WrapperSelect> */}
       <DatePicker placeholder="__.__._____" onChange={onChange} />
-      <Button>Сбросить</Button>
-      <Button type="primary">Применить</Button>
+      <Button>СБРОСИТЬ</Button>
+      <Button type="primary">ПРИМЕНИТЬ</Button>
       </S.WrapperFilters>
-      <Table
-        columns={columns}
-        expandable={{
-          expandedRowRender: (record) => (
-            <p style={{ margin: 0 }}>{record.description}</p>
-          ),
-        }}
-        dataSource={data}
-      />
+      <CargosTable />
     </>
   );
 };
